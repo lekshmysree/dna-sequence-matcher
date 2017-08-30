@@ -4,7 +4,6 @@ def readgenome(filename):
     genome=''
     with open(filename,'r') as f:
         for line in f:
-            #print line
             if line[0]!='>':
                 genome+=line.rstrip()
     return genome
@@ -16,11 +15,8 @@ def readfastq(filename):
         while True:
             f.readline()
             seqs=f.readline()
-            #print "hiii"
             f.readline()
             qual=f.readline()
-            #print seqs
-            #print qual
             if len(seqs)==0:
                 break
             sequences.append(seqs)
@@ -53,15 +49,11 @@ def naive(p,t):
     occurences=[]
     for i in range(len(t)-len(p)+1):
         match=True
-        #print "the value of i={}".format(i)
         for j in range(len(p)):
-            #print "t[i+j]={} p[j]={}".format(t[i+j], p[j])
             if t[i+j]!= p[j]:
-                #print "not matched"
                 match=False
                 break
         if match:
-            #print "matched"
             occurences.append(i)
     return occurences
 
@@ -70,25 +62,21 @@ def naive2mm(p,t):
     for i in range(len(t)-len(p)+1):
         match=True
         num_mismatch=0
-        #print "the value of i={}".format(i)
         for j in range(len(p)):
-            #print "t[i+j]={} p[j]={}".format(t[i+j], p[j])
             if t[i+j]!= p[j]:
                 num_mismatch+=1
                 if num_mismatch>2:
-                   #print "more than 2 characters mismatched"
                    match=False
                    break
         if match:
-            #print "matched"
             occurences.append(i)
     return occurences
 
-seqs,quals=readfastq('ERR037900_1.first1000.fastq')
+seqs,quals=readfastq('resources/ERR037900_1.first1000.fastq')
 gc=gccheck(seqs)
 print "gc:{}".format(gc)
 #print seqs
-genome=readgenome('lambda_virus.fa')
+genome=readgenome('resources/lambda_virus.fa')
 #with open('res.txt','w') as f:
     #f.write(genome)
 
