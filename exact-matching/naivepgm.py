@@ -76,27 +76,11 @@ seqs,quals=readfastq('resources/ERR037900_1.first1000.fastq')
 gc=gccheck(seqs)
 print "gc:{}".format(gc)
 #print seqs
+
 genome=readgenome('resources/lambda_virus.fa')
-#with open('res.txt','w') as f:
-    #f.write(genome)
-
-#genome=readgenome('FA1.txt')
-
 pattern='AGGAGGTT'
 t=reversecomplement(pattern)
 occurences=naive2mm(pattern,genome)
+print "pattern={}   t={}".format(repr(pattern),repr(t))
 
-#print "pattern={}   t={}".format(repr(pattern),repr(t))
-#if pattern != t:
-    #reverseoccurence=naive(t,genome)
-    #print "reverseoccurences is :{}".format(reverseoccurence)
-    #occurences.extend(reverseoccurence)
-    #print "checked the complementary strand"
-
-   
-#print "the number of matches occured is {}".format(len(occurences))
-#print occurences
-#print len(occurences)
-#print genome
-#print t
         
